@@ -1,6 +1,14 @@
 {
+  "name": "csc307-react-app",
+  "version": "1.0.0",
+  "description": "first react app",
+  "main": "index.js",
+  "type": "commonjs",
   "scripts": {
-    "start": "npx react-scripts start"
+    "start": "cd react-frontend && npm start",
+    "build": "cd react-frontend && npm build",
+    "test": "cd react-frontend && npm test",
+    "eject": "cd react-frontend && npm eject"
   },
   "dependencies": {
     "create-react-app": "^5.0.1"
