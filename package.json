@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "start": "npx react-scripts start"
+  },
+  "dependencies": {
+    "create-react-app": "^5.0.1"
+  }
+  
+}
