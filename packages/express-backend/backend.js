@@ -43,8 +43,11 @@ const findUserByName = (name) => {
 
 const findUserById = (id) => users["users_list"].find((user) => user["id"] === id);
 
+const findUserByJob = (job) => users["users_list"].find((user) => user.job === job);
+
 app.get('/users', (req, res) => {
     const name = req.query.name;
+    const job = req.query.job;
     if (name != undefined) {
         let result = findUserByName(name);
         result = {users_list: result};
@@ -85,8 +88,26 @@ const generateId = () => {
 app.post("/users", (req, res) => {
     const userToAdd = req.body;
     addUser({"id":generateId(),...userToAdd});
-    res.status(201).send();
+    res.status(201).send("Created");
 });
+
+const deleteUser = (id) => {
+    users["users_list"] = users["users_list"].filter((user) => {
+        return user.id !== id;
+    })
+    return id;
+}
+
+app.delete("/users/:id", (req, res) => {
+    const id = req.params.id;
+    let result = findUserById(id);
+    if (result === undefined) {
+        res.status(404).send("Resourse not found.");
+    } else {
+        deleteUser(id);
+        res.status(204).send("No Content");
+    }
+})
 
 app.listen(port, () => {
     console.log("Example app listening at http://localhost:${port}");
