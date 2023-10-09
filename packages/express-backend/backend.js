@@ -71,9 +71,20 @@ const addUser = (user) => {
     return user;
 }
 
+const generateId = () => {
+    const alphabet = "abcdefghijklmnopqrstuvwxyz";
+    const id = alphabet[Math.floor(Math.random() * alphabet.length)] + 
+        alphabet[Math.floor(Math.random() * alphabet.length)] + 
+        alphabet[Math.floor(Math.random() * alphabet.length)] +
+        Math.floor(Math.random() * 9) + 
+        Math.floor(Math.random() * 9) +
+        Math.floor(Math.random() * 9);
+    return id;
+}
+
 app.post("/users", (req, res) => {
     const userToAdd = req.body;
-    addUser(userToAdd);
+    addUser({"id":generateId(),...userToAdd});
     res.status(201).send();
 });
 
