@@ -4,7 +4,7 @@ import cors from "cors";
 const app = express();
 const port = 8000;
 
-const users = { 
+const users = {
     users_list : [
        { 
           id : 'xyz789',
@@ -100,7 +100,7 @@ const generateId = () => {
 app.post("/users", (req, res) => {
     const userToAdd = req.body;
     addUser({"id":generateId(),...userToAdd});
-    res.status(201).send("Created");
+    res.status(201).send("201 Created");
 });
 
 const deleteUser = (id) => {
@@ -122,5 +122,5 @@ app.delete("/users/:id", (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log("Example app listening at http://localhost:${port}");
+    console.log(`Example app listening at http://localhost:${port}`);
 });
